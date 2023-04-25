@@ -1,4 +1,6 @@
 let deckId = "";
+let pcScore = 0;
+let myScore = 0;
 
 function handleClick() {
   fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
@@ -20,11 +22,11 @@ function drawCard() {
       console.log(card);
       document.getElementById("card1").innerHTML = `
       <img class="cards" src=${card.cards[0].image}></img>
-      `
+      `;
       document.getElementById("card2").innerHTML = `
       <img class="cards" src=${card.cards[1].image}></img>
-      `
-      
+      `;
+
     });
 }
 
@@ -32,7 +34,10 @@ document.getElementById("new-deck").addEventListener("click", handleClick);
 document.getElementById("new-cards").addEventListener("click", drawCard);
 
 
-// let myScore = 2
+// document.getElementById("pc-score").innerHTML = `
+// <h4>PC Score: ${myScore + card.cards[0].value}</h4>
+// `;
+
 // document.getElementById("player-score").innerHTML = `
-// <h4>My Score: ${myScore}</p>
-// `
+// <h4>My Score: ${myScore + card.cards[1].value}</h4>
+// `;
