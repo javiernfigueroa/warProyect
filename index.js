@@ -30,3 +30,9 @@ function drawCard() {
 
 document.getElementById("new-deck").addEventListener("click", handleClick);
 document.getElementById("new-cards").addEventListener("click", drawCard);
+
+
+// let myScore = 2
+// document.getElementById("player-score").innerHTML = `
+// <h4>My Score: ${myScore}</p>
+// `

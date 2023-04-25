@@ -1,5 +1,10 @@
+<!DOCTYPE html>
 <html>
-  <head>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War Game</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
@@ -12,19 +17,27 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <div id="game-container">
+    <main id="game-container">
       <div class="top">
         <button id="new-deck">New Deck</button>
         <p id="remaining"></p>
       </div>
       <div id="cards-container">
-        <div id="card1"></div>
-        <div id="card2"></div>
+        <div class="score" id="pc-score">
+            <h4>PC score: </h4>
+        </div>
+        <div class="card-slot" id="card1"></div>
+        <div class="card-slot" id="card2"></div>
+        <div class="score" id="player-score">
+            <h4>My score:</h4>
+        </div>
       </div>
       <div id="btn">
         <button id="new-cards">Draw</button>
       </div>
-    </div>
+    </main>
     <script src="index.js"></script>
   </body>
 </html>
+
+
