@@ -1,64 +1,32 @@
-// function handleClick() {
-//     fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
-//         .then(res => res.json())
-//         .then(data => console.log(data))
-// }
+let deckId = "";
 
-// function cb() {
-//     console.log('I finally ran')
-// }
-
-// document.getElementById("new-deck").addEventListener("click", handleClick)
-// setTimeout(cb, 2000)
-
-// cb2 = peopleHasPet => peopleHasPet.hasPet
-// cb3 = peopleOlder => peopleOlder.age >= 18
-
-// const people = [
-//     { name: "Jack", hasPet: true, age: 12 },
-//     { name: "Jill", hasPet: false, age: 18 },
-//     { name: "Alice", hasPet: true, age: 22 },
-//     { name: "Bob", hasPet: false, age: 32 },
-// ]
-
-// const peopleWithPet = people.filter(cb2)
-// const peopleAgeFine = people.filter(cb3)
-// console.log(peopleWithPet)
-// console.log(peopleAgeFine)
-
-const people = [
-  { name: "Jack", hasPet: true },
-  { name: "Jill", hasPet: false },
-  { name: "Alice", hasPet: true },
-  { name: "Bob", hasPet: false },
-];
-
-function filterArray(array, callback) {
-  const resultingArray = []
-  for (let i of array) {
-    const shouldBeIncluded = callback(i);
-    if (shouldBeIncluded) {
-      resultingArray.push(i);
-    }
-  }
-  return resultingArray
+function handleClick() {
+  fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
+    .then((res) => res.json())
+    .then((data) => {
+      deckId = data.deck_id;
+      console.log(deckId);
+    });
 }
 
+function drawCard() {
+  if (deckId === "") {
+    console.log("Please click New Deck First");
+    return;
+  }
+  fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
+    .then((res) => res.json())
+    .then((card) => {
+      console.log(card);
+      document.getElementById("card1").innerHTML = `
+      <img class="cards" src=${card.cards[0].image}></img>
+      `
+      document.getElementById("card2").innerHTML = `
+      <img class="cards" src=${card.cards[1].image}></img>
+      `
+      
+    });
+}
 
-const peopleWithPets = filterArray(people, function(person) {
-    return person.hasPet
-})
-
-console.log(peopleWithPets)
-
-
-const voters = [
-    {name: "Joe", email: "joe@joe.com", voted: true},
-    {name: "Jane", email: "jane@jane.com", voted: true},
-    {name: "Bo", email: "bo@bo.com", voted: false},
-    {name: "Bane", email: "bane@bane.com", voted: false}
-]
-
-
-const newArray = voters.filter(voted => voted.voted).map(person => person.email) 
-console.log(newArray)
+document.getElementById("new-deck").addEventListener("click", handleClick);
+document.getElementById("new-cards").addEventListener("click", drawCard);

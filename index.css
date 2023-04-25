@@ -1,0 +1,7 @@
+.cards {
+    width: 150px;
+}
+
+#cards-container {
+    display: flex;
+}
